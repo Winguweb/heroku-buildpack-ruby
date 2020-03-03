@@ -1009,6 +1009,11 @@ params = CGI.parse(uri.query || "")
 
   def rake
     @rake ||= begin
+
+      # Before using rake, create .env
+      system('echo "----> Creating empty env file"')
+      system('cp /config/atsb.yml.example /config/atsb.yml')      
+  
       rake_gem_available = bundler.has_gem?("rake") || ruby_version.rake_is_vendored?
       raise_on_fail      = bundler.gem_version('railties') && bundler.gem_version('railties') > Gem::Version.new('3.x')
 
