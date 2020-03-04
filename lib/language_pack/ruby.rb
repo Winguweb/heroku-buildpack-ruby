@@ -1014,7 +1014,7 @@ params = CGI.parse(uri.query || "")
       system('echo "-----> Creating empty env file"')
       exampleDir = Dir.pwd + '/config/' + env('HEROKU_ENV_NAME') +'.yml.example'
 
-      envFinalDir = Dir.pwd + '/config/atsb.yml'
+      envFinalDir = Dir.pwd + '/config/' + env('HEROKU_ENV_NAME') + '.yml'
       system('cp ' + exampleDir + ' ' + envFinalDir)      
   
       rake_gem_available = bundler.has_gem?("rake") || ruby_version.rake_is_vendored?
