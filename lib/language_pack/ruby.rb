@@ -1012,11 +1012,7 @@ params = CGI.parse(uri.query || "")
 
       # Before using rake, create .env
       system('echo "-----> Creating empty env file"')
-      exampleDir = Dir.pwd + '/config/atsb.yml.example'
-
-      # loadedExample = YAML.load(ERB.new(File.new(exampleDir).read).result)      
-      # system('echo ' + loadedExample)
-      # system('cat ' + loadedExample)
+      exampleDir = Dir.pwd + '/config/' + env('HEROKU_ENV_NAME') +'.yml.example'
 
       envFinalDir = Dir.pwd + '/config/atsb.yml'
       system('cp ' + exampleDir + ' ' + envFinalDir)      
