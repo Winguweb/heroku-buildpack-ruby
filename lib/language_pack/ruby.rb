@@ -1013,11 +1013,15 @@ params = CGI.parse(uri.query || "")
       # Before using rake, create .env
       system('echo "-----> Creating empty env file"')
       exampleDir = Dir.pwd + '/config/atsb.yml.example'
-      system('cat ' + exampleDir)
-      loadedExample = YAML.load_file(exampleDir).with_indifferent_access
+      # system('cat ' + exampleDir)
+
+
+
+      loadedExample = YAML.load(ERB.new(File.new(exampleDir).read).result)      
+
       system('echo ' + loadedExample)
       system('cat ' + loadedExample)
-      
+
       envFinalDir = Dir.pwd + '/config/atsb.yml'
       system('cp ' + exampleDir + ' ' + envFinalDir)      
   
