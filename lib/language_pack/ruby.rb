@@ -1012,8 +1012,12 @@ params = CGI.parse(uri.query || "")
 
       # Before using rake, create .env
       system('echo "-----> Creating empty env file"')
-      system('echo ' + env('ALGOLIA_APP_KEY'))
       exampleDir = Dir.pwd + '/config/atsb.yml.example'
+      system('cat ' + exampleDir)
+      loadedExample = YAML.load_file(exampleDir).with_indifferent_access
+      system('echo ' + loadedExample)
+      system('cat ' + loadedExample)
+      
       envFinalDir = Dir.pwd + '/config/atsb.yml'
       system('cp ' + exampleDir + ' ' + envFinalDir)      
   
